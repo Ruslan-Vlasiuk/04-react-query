@@ -41,17 +41,17 @@ export default function App() {
     <div className={css.app}>
       <Toaster position="top-center" />
       <SearchBar onSubmit={handleSearch} />
-      {isLoading && <Loader />}
-      {isError && <ErrorMessage />}
-      {!isLoading && !isError && movies.length > 0 && (
-        <MovieGrid movies={movies} onSelect={setSelectedMovie} />
-      )}
       {totalPages > 1 && (
         <Pagination
           totalPages={totalPages}
           currentPage={page}
           onPageChange={setPage}
         />
+      )}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
+      {!isLoading && !isError && movies.length > 0 && (
+        <MovieGrid movies={movies} onSelect={setSelectedMovie} />
       )}
       {selectedMovie && (
         <MovieModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
